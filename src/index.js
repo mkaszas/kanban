@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { init as initStore } from './store';
+
+initStore();
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
