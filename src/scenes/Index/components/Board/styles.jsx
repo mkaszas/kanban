@@ -6,15 +6,20 @@ export const BoardWrapper = styled.div`
   min-height: 100vh;
 `;
 
-export const Title = styled.div`
+export const Title = styled.input`
   font-size: 18px;
   font-weight: bold;
   line-height: 30px;
   height: 30px;
   background-color: #ecf0f1;
+  border: none;
   border-radius: 3px;
   padding: 10px;
   margin: 20px 20px 0;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const ColumnList = styled.div`
