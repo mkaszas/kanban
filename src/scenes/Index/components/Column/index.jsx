@@ -6,13 +6,9 @@ import Card from '../Card';
 import { ColumnWrapper, Title, CardsWrapper } from './styles';
 
 Column.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  cards: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  cards: PropTypes.arrayOf(Card.propTypes).isRequired,
 };
 
 export default function Column({ title, cards }) {

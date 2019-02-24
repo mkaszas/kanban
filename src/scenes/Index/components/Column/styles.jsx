@@ -5,7 +5,7 @@ export const ColumnWrapper = styled.div`
   padding: 10px;
   background-color: #ecf0f1;
   border-radius: 3px;
-  margin: 20px 30px;
+  margin: 20px 10px;
 `;
 
 export const Title = styled.div`

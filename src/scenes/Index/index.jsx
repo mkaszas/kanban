@@ -1,26 +1,59 @@
 import React from 'react';
 
-import Column from './components/Column';
+import Board from './components/Board';
 
 const CARDS = [
   {
-    id: 1,
+    id: 'card-01',
     title: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
   },
   {
-    id: 2,
+    id: 'card-02',
     title: 'World',
   },
   {
-    id: 3,
+    id: 'card-03',
     title: 'Three',
   },
   {
-    id: 4,
+    id: 'card-04',
     title: 'Four',
   },
 ];
 
+const COLUMNS = [
+  {
+    id: 'col-01',
+    title: 'Column 1',
+    cards: CARDS,
+  },
+  {
+    id: 'col-02',
+    title: 'Column 2',
+    cards: [CARDS[0]],
+  },
+  {
+    id: 'col-03',
+    title: 'Column 3',
+    cards: CARDS,
+  },
+  {
+    id: 'col-04',
+    title: 'Column 1',
+    cards: CARDS,
+  },
+  {
+    id: 'col-05',
+    title: 'Column 2',
+    cards: [CARDS[0]],
+  },
+  {
+    id: 'col-06',
+    title: 'Column 3',
+    cards: CARDS,
+  },
+];
+
 export default function Index() {
-  return <Column title="Title" cards={CARDS} />;
+  return <Board title="My first board" columns={COLUMNS} />;
 }
