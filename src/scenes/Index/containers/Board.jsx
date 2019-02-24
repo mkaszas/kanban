@@ -1,11 +1,27 @@
-import { getBoard, renameBoard } from '../../../store/board';
+import { connect } from 'react-redux';
 
-export default function BoardContainer({ boardId, renderBoard }) {
-  const { id, title, columns } = getBoard(boardId);
+import { getBoard } from '../../../store/selectors/boards';
+import { renameBoard } from '../../../store/actions/boards';
+
+function BoardContainer({ boardId, renderBoard, board, rename }) {
+  const { id, title, columns } = board;
   return renderBoard({
     id,
     title,
     columns,
-    rename: title => renameBoard(id, title),
+    rename,
   });
 }
+
+const mapStateToProps = (state, props) => ({
+  board: getBoard(state, props.boardId),
+});
+
+const mapDispatchToProps = (dispatch, props) => ({
+  rename: title => dispatch(renameBoard(props.boardId, title)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BoardContainer);

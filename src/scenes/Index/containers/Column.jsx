@@ -1,11 +1,27 @@
-import { getColumn, renameColumn } from '../../../store/column';
+import { connect } from 'react-redux';
 
-export default function ColumnContainer({ columnId, renderColumn }) {
-  const { id, title, cards } = getColumn(columnId);
+import { getColumn } from '../../../store/selectors/columns';
+import { renameColumn } from '../../../store/actions/columns';
+
+function ColumnContainer({ columnId, renderColumn, column, rename }) {
+  const { title, cards } = column;
   return renderColumn({
-    id,
+    id: columnId,
     title,
     cards,
-    rename: title => renameColumn(id, title),
+    rename,
   });
 }
+
+const mapStateToProps = (state, { columnId }) => ({
+  column: getColumn(state, columnId),
+});
+
+const mapDispatchToProps = (dispatch, { columnId }) => ({
+  rename: title => dispatch(renameColumn(columnId, title)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ColumnContainer);

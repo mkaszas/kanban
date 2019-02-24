@@ -1,10 +1,26 @@
-import { getCard, renameCard } from '../../../store/card';
+import { connect } from 'react-redux';
 
-export default function CardContainer({ cardId, renderCard }) {
-  const { id, title } = getCard(cardId);
+import { getCard } from '../../../store/selectors/cards';
+import { renameCard } from '../../../store/actions/cards';
+
+function CardContainer({ cardId, renderCard, card, rename }) {
+  const { title } = card;
   return renderCard({
-    id,
+    id: cardId,
     title,
-    rename: title => renameCard(id, title),
+    rename,
   });
 }
+
+const mapStateToProps = (state, { cardId }) => ({
+  card: getCard(state, cardId),
+});
+
+const mapDispatchToProps = (dispatch, { cardId }) => ({
+  rename: title => dispatch(renameCard(cardId, title)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CardContainer);

@@ -1,17 +1,7 @@
-import Lockr from 'lockr';
+import { createStore } from 'redux';
+import rootReducer from './reducers';
 
-import { BOARDS, COLUMNS, CARDS } from './sample-data';
-
-const prefix = 'mk-sp-kanban-';
-
-export function init() {
-  Lockr.prefix = prefix;
-  if (!Lockr.get('init')) {
-    Lockr.set('init', true);
-    Lockr.set('boards', BOARDS);
-    Lockr.set('columns', COLUMNS);
-    Lockr.set('cards', CARDS);
-  }
-}
-
-export default Lockr;
+export default createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);

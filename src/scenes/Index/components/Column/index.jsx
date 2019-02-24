@@ -8,9 +8,9 @@ import Card from '../Card';
 import { ColumnWrapper, Title, CardsWrapper } from './styles';
 
 Column.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  cards: PropTypes.arrayOf(PropTypes.number).isRequired,
+  cards: PropTypes.arrayOf(PropTypes.string).isRequired,
   rename: PropTypes.func.isRequired,
 };
 

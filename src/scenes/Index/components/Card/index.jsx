@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { CardWrapper, Title } from './styles';
 
 Card.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   rename: PropTypes.func.isRequired,
 };

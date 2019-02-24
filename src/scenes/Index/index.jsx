@@ -7,7 +7,7 @@ import Board from './components/Board';
 export default function Index() {
   return (
     <BoardContainer
-      boardId={1}
+      boardId="board-0"
       renderBoard={({ title, columns, rename }) => (
         <Board title={title} columns={columns} rename={rename} />
       )}
