@@ -8,7 +8,13 @@ export const BoardWrapper = styled.div`
 
 export const Title = styled.div`
   font-size: 18px;
-  background-color: rgba(255, 255, 255, 0.4);
+  font-weight: bold;
+  line-height: 30px;
+  height: 30px;
+  background-color: #ecf0f1;
+  border-radius: 3px;
+  padding: 10px;
+  margin: 20px 20px 0;
 `;
 
 export const ColumnList = styled.div`
