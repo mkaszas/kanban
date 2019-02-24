@@ -26,7 +26,7 @@ export const ColumnList = styled.div`
   flex-grow: 1;
 
   display: flex;
-  align-items: baseline;
+  align-items: start;
   overflow-x: scroll;
   padding: 0 10px;
 `;

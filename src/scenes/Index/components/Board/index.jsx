@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ColumnContainer from '../../containers/Column';
 
 import Column from '../Column';
+import NewColumn from '../NewColumn';
 
 import { BoardWrapper, Title, ColumnList } from './styles';
 
@@ -34,6 +35,7 @@ export default function Board({ title, columns, rename }) {
             )}
           />
         ))}
+        <NewColumn />
       </ColumnList>
     </BoardWrapper>
   );
