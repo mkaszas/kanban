@@ -31,7 +31,9 @@ export default function Column({ title, cards, rename }) {
           <CardContainer
             key={cardId}
             cardId={cardId}
-            renderCard={({ id, title }) => <Card id={id} title={title} />}
+            renderCard={({ id, title, rename }) => (
+              <Card id={id} title={title} rename={rename} />
+            )}
           />
         ))}
       </CardsWrapper>
