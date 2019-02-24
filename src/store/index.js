@@ -1,6 +1,6 @@
 import Lockr from 'lockr';
 
-import { BOARDS } from './sample-data';
+import { BOARDS, COLUMNS, CARDS } from './sample-data';
 
 const prefix = 'mk-sp-kanban-';
 
@@ -9,6 +9,8 @@ export function init() {
   if (!Lockr.get('init')) {
     Lockr.set('init', true);
     Lockr.set('boards', BOARDS);
+    Lockr.set('columns', COLUMNS);
+    Lockr.set('cards', CARDS);
   }
 }
 
