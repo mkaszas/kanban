@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 
 export const Placeholder = styled.div`
   width: 270px;
   height: 20px;
+  text-align: center;
   flex-grow: 0;
   flex-shrink: 0;
   padding: 10px;
@@ -33,4 +35,10 @@ export const TitleInput = styled.input`
   &:focus {
     outline: none;
   }
+`;
+
+export const StyledIcon = styled(Icon)`
+  font-size: 22px;
+  line-height: 20px;
+  color: rgba(255, 255, 255, 0.6);
 `;

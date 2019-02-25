@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { createColumn } from '../../../../store/actions/columns';
 
-import { Placeholder, NewColumnForm, TitleInput } from './styles';
+import { Placeholder, NewColumnForm, TitleInput, StyledIcon } from './styles';
 
 function NewColumn({ create }) {
   const titleInput = useRef(null);
@@ -30,7 +30,9 @@ function NewColumn({ create }) {
     </NewColumnForm>
   ) : (
     <div>
-      <Placeholder onClick={() => setEditing(true)} />
+      <Placeholder onClick={() => setEditing(true)}>
+        <StyledIcon icon="plus" />
+      </Placeholder>
     </div>
   );
 }
