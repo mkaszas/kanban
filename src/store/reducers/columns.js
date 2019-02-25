@@ -1,4 +1,4 @@
-import { RENAME_COLUMN } from '../actionTypes';
+import { ADD_COLUMN, RENAME_COLUMN } from '../actionTypes';
 
 const initialState = {
   'column-0': {
@@ -9,6 +9,16 @@ const initialState = {
 
 const columns = (state = initialState, action) => {
   switch (action.type) {
+    case ADD_COLUMN: {
+      const { id, title } = action.payload;
+      return {
+        ...state,
+        [id]: {
+          title,
+          cards: [],
+        },
+      };
+    }
     case RENAME_COLUMN: {
       const { id, title } = action.payload;
       return {

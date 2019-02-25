@@ -4,9 +4,8 @@ import { getBoard } from '../../../store/selectors/boards';
 import { renameBoard } from '../../../store/actions/boards';
 
 function BoardContainer({ boardId, renderBoard, board, rename }) {
-  const { id, title, columns } = board;
+  const { title, columns } = board;
   return renderBoard({
-    id,
     title,
     columns,
     rename,

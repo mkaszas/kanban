@@ -1,9 +1,18 @@
-import { RENAME_COLUMN } from '../actionTypes';
+import { time as id } from 'uniqid';
+import { RENAME_COLUMN, ADD_COLUMN } from '../actionTypes';
 
 export const renameColumn = (id, title) => ({
   type: RENAME_COLUMN,
   payload: {
     id,
+    title,
+  },
+});
+
+export const createColumn = title => ({
+  type: ADD_COLUMN,
+  payload: {
+    id: id('column-'),
     title,
   },
 });

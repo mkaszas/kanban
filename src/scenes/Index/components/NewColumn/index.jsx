@@ -1,15 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { connect } from 'react-redux';
 
-// import { createColumn } from '../../../../store/column';
+import { createColumn } from '../../../../store/actions/columns';
 
-import { Placeholder, NewColumnForm } from './styles';
+import { Placeholder, NewColumnForm, TitleInput } from './styles';
 
-export default function NewColumn() {
+function NewColumn({ create }) {
+  const titleInput = useRef(null);
   const [editing, setEditing] = useState(false);
+  const [title, setTitle] = useState('');
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    create(title);
+    setTitle('');
+    setEditing(false);
+  };
 
   return editing ? (
-    <NewColumnForm />
+    <NewColumnForm onSubmit={handleSubmit}>
+      <TitleInput
+        ref={titleInput}
+        type="text"
+        value={title}
+        placeholder="Title"
+        onChange={e => setTitle(e.target.value)}
+        autoFocus
+      />
+    </NewColumnForm>
   ) : (
     <Placeholder onClick={() => setEditing(true)} />
   );
 }
+
+const mapDispatchToProps = dispatch => ({
+  create: title => dispatch(createColumn(title)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(NewColumn);

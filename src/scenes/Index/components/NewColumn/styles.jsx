@@ -10,4 +10,25 @@ export const Placeholder = styled.div`
   cursor: pointer;
 `;
 
-export const NewColumnForm = styled.form``;
+export const NewColumnForm = styled.form`
+  margin: 20px 10px;
+  background-color: #ecf0f1;
+`;
+
+export const TitleInput = styled.input`
+  background: none;
+  border-radius: 3px;
+  width: 270px;
+  height: 20px;
+  padding: 10px;
+  flex-shrink: 0;
+  flex-grow: 0;
+
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+`;
