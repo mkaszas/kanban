@@ -12,9 +12,10 @@ Column.propTypes = {
   title: PropTypes.string.isRequired,
   cards: PropTypes.arrayOf(PropTypes.string).isRequired,
   rename: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
 };
 
-export default function Column({ title, cards, rename }) {
+export default function Column({ title, cards, rename, remove }) {
   const [columnTitle, setTitle] = useState(title);
 
   const handleChange = e => {
@@ -26,7 +27,7 @@ export default function Column({ title, cards, rename }) {
   return (
     <ColumnWrapper>
       <Title value={columnTitle} onChange={handleChange} />
-      <StyledIcon icon="trash" />
+      <StyledIcon icon="trash" onClick={() => remove()} />
       <CardsWrapper>
         {cards.map(cardId => (
           <CardContainer

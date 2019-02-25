@@ -30,8 +30,14 @@ export default function Board({ title, columns, rename }) {
           <ColumnContainer
             key={columnId}
             columnId={columnId}
-            renderColumn={({ id, title, cards, rename }) => (
-              <Column id={id} title={title} cards={cards} rename={rename} />
+            renderColumn={({ id, title, cards, rename, remove }) => (
+              <Column
+                id={id}
+                title={title}
+                cards={cards}
+                rename={rename}
+                remove={remove}
+              />
             )}
           />
         ))}

@@ -1,4 +1,4 @@
-import { ADD_COLUMN, RENAME_BOARD } from '../actionTypes';
+import { RENAME_BOARD, ADD_COLUMN, REMOVE_COLUMN } from '../actionTypes';
 
 const initialState = {
   selected: 'board-0',
@@ -28,6 +28,20 @@ const boards = (state = initialState, action) => {
         [selectedBoard]: {
           ...state[selectedBoard],
           columns: [...state[selectedBoard].columns, id],
+        },
+      };
+    }
+    case REMOVE_COLUMN: {
+      const { id } = action.payload;
+      const selectedBoard = state.selected;
+      const columns = [...state[selectedBoard].columns];
+      const index = columns.findIndex(c => c === id);
+      columns.splice(index, 1);
+      return {
+        ...state,
+        [selectedBoard]: {
+          ...state[selectedBoard],
+          columns,
         },
       };
     }

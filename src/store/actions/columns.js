@@ -1,5 +1,5 @@
 import { time as id } from 'uniqid';
-import { RENAME_COLUMN, ADD_COLUMN } from '../actionTypes';
+import { RENAME_COLUMN, ADD_COLUMN, REMOVE_COLUMN } from '../actionTypes';
 
 export const renameColumn = (id, title) => ({
   type: RENAME_COLUMN,
@@ -14,5 +14,12 @@ export const createColumn = title => ({
   payload: {
     id: id('column-'),
     title,
+  },
+});
+
+export const removeColumn = id => ({
+  type: REMOVE_COLUMN,
+  payload: {
+    id,
   },
 });

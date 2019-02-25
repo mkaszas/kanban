@@ -1,4 +1,4 @@
-import { ADD_COLUMN, RENAME_COLUMN } from '../actionTypes';
+import { ADD_COLUMN, RENAME_COLUMN, REMOVE_COLUMN } from '../actionTypes';
 
 const initialState = {
   'column-0': {
@@ -18,6 +18,12 @@ const columns = (state = initialState, action) => {
           cards: [],
         },
       };
+    }
+    case REMOVE_COLUMN: {
+      const { id } = action.payload;
+      const newState = { ...state };
+      delete newState[id];
+      return newState;
     }
     case RENAME_COLUMN: {
       const { id, title } = action.payload;
