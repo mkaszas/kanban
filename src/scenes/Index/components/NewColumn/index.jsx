@@ -6,7 +6,6 @@ import { createColumn } from '../../../../store/actions/columns';
 import { Placeholder, NewColumnForm, TitleInput, StyledIcon } from './styles';
 
 function NewColumn({ create }) {
-  const titleInput = useRef(null);
   const [editing, setEditing] = useState(false);
   const [title, setTitle] = useState('');
 
@@ -20,7 +19,6 @@ function NewColumn({ create }) {
   return editing ? (
     <NewColumnForm onSubmit={handleSubmit}>
       <TitleInput
-        ref={titleInput}
         type="text"
         value={title}
         placeholder="Title"
