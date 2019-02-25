@@ -29,7 +29,9 @@ function NewColumn({ create }) {
       />
     </NewColumnForm>
   ) : (
-    <Placeholder onClick={() => setEditing(true)} />
+    <div>
+      <Placeholder onClick={() => setEditing(true)} />
+    </div>
   );
 }
 

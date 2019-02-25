@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const ColumnWrapper = styled.div`
   width: 270px;
+  flex-grow: 0;
+  flex-shrink: 0;
   padding: 10px;
   background-color: #ecf0f1;
   border-radius: 3px;
