@@ -8,8 +8,20 @@ export default function Index() {
   return (
     <BoardContainer
       boardId="board-0"
-      renderBoard={({ title, columns, rename }) => (
-        <Board title={title} columns={columns} rename={rename} />
+      renderBoard={({
+        title,
+        columns,
+        renameBoard,
+        renameColumn,
+        removeColumn,
+      }) => (
+        <Board
+          title={title}
+          columns={columns}
+          renameBoard={renameBoard}
+          renameColumn={renameColumn}
+          removeColumn={removeColumn}
+        />
       )}
     />
   );

@@ -5,7 +5,7 @@ import CardContainer from '../../containers/Card';
 
 import Card from '../Card';
 
-import { ColumnWrapper, Title, CardsWrapper, StyledIcon } from './styles';
+import { Title, CardsWrapper, StyledIcon, IconWrapper } from './styles';
 
 Column.propTypes = {
   id: PropTypes.string.isRequired,
@@ -15,7 +15,7 @@ Column.propTypes = {
   remove: PropTypes.func.isRequired,
 };
 
-export default function Column({ title, cards, rename, remove }) {
+export default function Column({ style, title, cards, rename, remove }) {
   const [columnTitle, setTitle] = useState(title);
 
   const handleChange = e => {
@@ -25,9 +25,11 @@ export default function Column({ title, cards, rename, remove }) {
   };
 
   return (
-    <ColumnWrapper>
+    <>
       <Title value={columnTitle} onChange={handleChange} />
-      <StyledIcon icon="trash" onClick={() => remove()} />
+      <IconWrapper>
+        <StyledIcon icon="trash" onClick={() => remove()} />
+      </IconWrapper>
       <CardsWrapper>
         {cards.map(cardId => (
           <CardContainer
@@ -39,6 +41,6 @@ export default function Column({ title, cards, rename, remove }) {
           />
         ))}
       </CardsWrapper>
-    </ColumnWrapper>
+    </>
   );
 }

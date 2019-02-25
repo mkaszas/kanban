@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
-import ColumnContainer from '../../containers/Column';
+import { PoseGroup } from 'react-pose';
 
 import Column from '../Column';
 import NewColumn from '../NewColumn';
 
+import { ColumnWrapper } from '../Column/styles';
 import { BoardWrapper, Title, ColumnList } from './styles';
 
 Board.propTypes = {
@@ -13,12 +13,18 @@ Board.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default function Board({ title, columns, rename }) {
+export default function Board({
+  title,
+  columns,
+  renameBoard,
+  renameColumn,
+  removeColumn,
+}) {
   const [boardTitle, setTitle] = useState(title);
 
   const handleTitleChange = e => {
     const newTitle = e.target.value;
-    rename(newTitle);
+    renameBoard(newTitle);
     setTitle(newTitle);
   };
 
@@ -26,21 +32,20 @@ export default function Board({ title, columns, rename }) {
     <BoardWrapper>
       <Title value={boardTitle} onChange={handleTitleChange} />
       <ColumnList>
-        {columns.map(columnId => (
-          <ColumnContainer
-            key={columnId}
-            columnId={columnId}
-            renderColumn={({ id, title, cards, rename, remove }) => (
+        <PoseGroup flipMove={false}>
+          {columns.map(({ id, title, cards }) => (
+            <ColumnWrapper key={id}>
               <Column
+                key={id}
                 id={id}
                 title={title}
                 cards={cards}
-                rename={rename}
-                remove={remove}
+                rename={title => renameColumn(id, title)}
+                remove={() => removeColumn(id)}
               />
-            )}
-          />
-        ))}
+            </ColumnWrapper>
+          ))}
+        </PoseGroup>
         <NewColumn />
       </ColumnList>
     </BoardWrapper>
