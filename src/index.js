@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
+
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './store';
+
+// Register font awesome icons
+library.add(faTrash, faPlus);
 
 ReactDOM.render(
   <Provider store={store}>

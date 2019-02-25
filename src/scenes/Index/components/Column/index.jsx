@@ -5,7 +5,7 @@ import CardContainer from '../../containers/Card';
 
 import Card from '../Card';
 
-import { ColumnWrapper, Title, CardsWrapper } from './styles';
+import { ColumnWrapper, Title, CardsWrapper, StyledIcon } from './styles';
 
 Column.propTypes = {
   id: PropTypes.string.isRequired,
@@ -26,6 +26,7 @@ export default function Column({ title, cards, rename }) {
   return (
     <ColumnWrapper>
       <Title value={columnTitle} onChange={handleChange} />
+      <StyledIcon icon="trash" />
       <CardsWrapper>
         {cards.map(cardId => (
           <CardContainer
