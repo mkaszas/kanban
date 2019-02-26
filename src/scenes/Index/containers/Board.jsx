@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getBoard } from '../../../store/selectors/boards';
 import { renameBoard } from '../../../store/actions/boards';
 import { removeColumn, renameColumn } from '../../../store/actions/columns';
+import { createCard } from '../../../store/actions/cards';
 
 function BoardContainer({
   boardId,
@@ -11,6 +12,7 @@ function BoardContainer({
   renameBoard,
   renameColumn,
   removeColumn,
+  createCard,
 }) {
   const { title, columns } = board;
   return renderBoard({
@@ -19,6 +21,7 @@ function BoardContainer({
     renameBoard,
     renameColumn,
     removeColumn,
+    createCard,
   });
 }
 
@@ -30,6 +33,7 @@ const mapDispatchToProps = (dispatch, { boardId }) => ({
   renameBoard: title => dispatch(renameBoard(boardId, title)),
   renameColumn: (columnId, title) => dispatch(renameColumn(columnId, title)),
   removeColumn: columnId => dispatch(removeColumn(columnId)),
+  createCard: (title, columnId) => dispatch(createCard(title, columnId)),
 });
 
 export default connect(

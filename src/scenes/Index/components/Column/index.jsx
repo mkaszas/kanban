@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 
 import CardContainer from '../../containers/Card';
 
 import Card from '../Card';
 
-import { Title, CardsWrapper, StyledIcon, IconWrapper } from './styles';
+import {
+  Title,
+  CardsWrapper,
+  StyledIcon,
+  IconWrapper,
+  NewCardButton,
+  NewCardWrapper,
+  NewCardForm,
+  NewCardTitle,
+  Button,
+} from './styles';
 
 Column.propTypes = {
   id: PropTypes.string.isRequired,
@@ -15,13 +26,34 @@ Column.propTypes = {
   remove: PropTypes.func.isRequired,
 };
 
-export default function Column({ style, title, cards, rename, remove }) {
+export default function Column({
+  style,
+  title,
+  cards,
+  rename,
+  remove,
+  createCard,
+}) {
+  const newTitle = useRef(null);
   const [columnTitle, setTitle] = useState(title);
+  const [editing, setEditing] = useState(false);
+
+  useEffect(() => {
+    if (editing) {
+      newTitle.current.focus();
+    }
+  }, [editing]);
 
   const handleChange = e => {
     const newTitle = e.target.value;
     rename(newTitle);
     setTitle(newTitle);
+  };
+
+  const handleNewCard = () => {
+    const { value: cardTitle } = newTitle.current;
+    createCard(cardTitle);
+    setEditing(false);
   };
 
   return (
@@ -41,6 +73,20 @@ export default function Column({ style, title, cards, rename, remove }) {
           />
         ))}
       </CardsWrapper>
+      <NewCardWrapper>
+        {editing ? (
+          <NewCardForm>
+            <NewCardTitle placeholder="Title" ref={newTitle} />
+            <Button variant="success" onClick={handleNewCard}>
+              Save
+            </Button>
+          </NewCardForm>
+        ) : (
+          <NewCardButton onClick={() => setEditing(true)}>
+            <Icon icon="plus" />
+          </NewCardButton>
+        )}
+      </NewCardWrapper>
     </>
   );
 }

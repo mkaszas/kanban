@@ -1,4 +1,4 @@
-import { RENAME_CARD } from '../actionTypes';
+import { RENAME_CARD, ADD_CARD } from '../actionTypes';
 
 const initialState = {
   'card-0': {
@@ -17,6 +17,15 @@ const cards = (state = initialState, action) => {
         ...state,
         [id]: {
           ...state[id],
+          title,
+        },
+      };
+    }
+    case ADD_CARD: {
+      const { id, title } = action.payload;
+      return {
+        ...state,
+        [id]: {
           title,
         },
       };

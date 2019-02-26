@@ -1,4 +1,9 @@
-import { ADD_COLUMN, RENAME_COLUMN, REMOVE_COLUMN } from '../actionTypes';
+import {
+  ADD_COLUMN,
+  RENAME_COLUMN,
+  REMOVE_COLUMN,
+  ADD_CARD,
+} from '../actionTypes';
 
 const initialState = {
   'column-0': {
@@ -32,6 +37,16 @@ const columns = (state = initialState, action) => {
         [id]: {
           ...state[id],
           title,
+        },
+      };
+    }
+    case ADD_CARD: {
+      const { columnId, id } = action.payload;
+      return {
+        ...state,
+        [columnId]: {
+          ...state[columnId],
+          cards: [...state[columnId].cards, id],
         },
       };
     }
