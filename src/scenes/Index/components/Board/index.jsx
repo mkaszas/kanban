@@ -10,7 +10,7 @@ import { BoardWrapper, Title, ColumnList } from './styles';
 
 Board.propTypes = {
   title: PropTypes.string.isRequired,
-  columns: PropTypes.arrayOf(PropTypes.string).isRequired,
+  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default function Board({
