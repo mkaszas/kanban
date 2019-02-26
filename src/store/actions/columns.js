@@ -17,9 +17,10 @@ export const createColumn = title => ({
   },
 });
 
-export const removeColumn = id => ({
+export const removeColumn = (id, cards) => ({
   type: REMOVE_COLUMN,
   payload: {
     id,
+    cards,
   },
 });

@@ -20,6 +20,7 @@ export default function Board({
   renameColumn,
   removeColumn,
   createCard,
+  renameCard,
 }) {
   const [boardTitle, setTitle] = useState(title);
 
@@ -42,8 +43,9 @@ export default function Board({
                 title={title}
                 cards={cards}
                 rename={title => renameColumn(id, title)}
-                remove={() => removeColumn(id)}
+                remove={() => removeColumn(id, cards.map(card => card.id))}
                 createCard={title => createCard(title, id)}
+                renameCard={renameCard}
               />
             </ColumnWrapper>
           ))}

@@ -1,4 +1,4 @@
-import { RENAME_CARD, ADD_CARD } from '../actionTypes';
+import { RENAME_CARD, ADD_CARD, REMOVE_COLUMN } from '../actionTypes';
 
 const initialState = {
   'card-0': {
@@ -29,6 +29,12 @@ const cards = (state = initialState, action) => {
           title,
         },
       };
+    }
+    case REMOVE_COLUMN: {
+      const { cards } = action.payload;
+      let newState = { ...state };
+      cards.forEach(card => delete newState[card]);
+      return newState;
     }
     default: {
       return state;

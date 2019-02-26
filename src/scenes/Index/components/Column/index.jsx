@@ -2,8 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 
-import CardContainer from '../../containers/Card';
-
 import Card from '../Card';
 
 import {
@@ -21,18 +19,25 @@ import {
 Column.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  cards: PropTypes.arrayOf(PropTypes.string).isRequired,
+  cards: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   rename: PropTypes.func.isRequired,
   remove: PropTypes.func.isRequired,
 };
 
 export default function Column({
+  id,
   style,
   title,
   cards,
   rename,
   remove,
   createCard,
+  renameCard,
 }) {
   const newTitle = useRef(null);
   const [columnTitle, setTitle] = useState(title);
@@ -50,7 +55,8 @@ export default function Column({
     setTitle(newTitle);
   };
 
-  const handleNewCard = () => {
+  const handleSubmit = e => {
+    e.preventDefault();
     const { value: cardTitle } = newTitle.current;
     createCard(cardTitle);
     setEditing(false);
@@ -63,21 +69,21 @@ export default function Column({
         <StyledIcon icon="trash" onClick={() => remove()} />
       </IconWrapper>
       <CardsWrapper>
-        {cards.map(cardId => (
-          <CardContainer
+        {cards.map(({ id: cardId, title }) => (
+          <Card
+            id={cardId}
             key={cardId}
-            cardId={cardId}
-            renderCard={({ id, title, rename }) => (
-              <Card id={id} title={title} rename={rename} />
-            )}
+            title={title}
+            rename={() => renameCard(cardId)}
+            create={title => createCard(title, id)}
           />
         ))}
       </CardsWrapper>
       <NewCardWrapper>
         {editing ? (
-          <NewCardForm>
+          <NewCardForm onSubmit={handleSubmit}>
             <NewCardTitle placeholder="Title" ref={newTitle} />
-            <Button variant="success" onClick={handleNewCard}>
+            <Button variant="success" type="submit">
               Save
             </Button>
           </NewCardForm>

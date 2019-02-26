@@ -15,6 +15,7 @@ export default function Index() {
         renameColumn,
         removeColumn,
         createCard,
+        renameCard,
       }) => (
         <Board
           title={title}
@@ -23,6 +24,7 @@ export default function Index() {
           renameColumn={renameColumn}
           removeColumn={removeColumn}
           createCard={createCard}
+          renameCard={renameCard}
         />
       )}
     />
