@@ -99,7 +99,7 @@ export const NewCardForm = styled.form`
   padding: 0 10px;
 `;
 
-export const NewCardTitle = styled.textarea`
+export const NewCardTitle = styled.input`
   font-size: 14px;
   line-height: 20px;
   border: none;

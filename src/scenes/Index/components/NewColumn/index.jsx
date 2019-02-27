@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { PoseGroup } from 'react-pose';
 
 import { createColumn } from '../../../../store/actions/columns';
+
+import { useClickOutside, useKeyDownOnly } from '../../../../hooks/events';
 
 import {
   Wrapper,
@@ -18,33 +20,8 @@ function NewColumn({ create }) {
   const [editing, setEditing] = useState(false);
   const [title, setTitle] = useState('');
 
-  useEffect(() => {
-    if (editing) {
-      window.addEventListener('keydown', handleKeyDown);
-      window.addEventListener('click', handleClick);
-    } else {
-      window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('click', handleClick);
-    }
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('click', handleClick);
-    };
-  }, [editing]);
-
-  const handleKeyDown = ({ key }) => {
-    if (key === 'Escape') {
-      reset();
-    }
-  };
-
-  const handleClick = e => {
-    if (wrapper.current && e.target) {
-      if (!wrapper.current.contains(e.target)) {
-        reset();
-      }
-    }
-  };
+  useClickOutside(wrapper, () => reset(), editing);
+  useKeyDownOnly(['Escape', 'Esc'], () => reset(), editing);
 
   const handleSubmit = e => {
     e.preventDefault();

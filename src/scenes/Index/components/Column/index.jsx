@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 
+import { useClickOutside, useKeyDownOnly } from '../../../../hooks/events';
+
 import Card from '../Card';
 
 import {
@@ -40,8 +42,12 @@ export default function Column({
   renameCard,
 }) {
   const newTitle = useRef(null);
+  const newCardWrapper = useRef(null);
   const [columnTitle, setTitle] = useState(title);
   const [editing, setEditing] = useState(false);
+
+  useClickOutside(newCardWrapper, () => setEditing(false), editing);
+  useKeyDownOnly(['Escape'], () => setEditing(false), editing);
 
   useEffect(() => {
     if (editing) {
@@ -79,7 +85,7 @@ export default function Column({
           />
         ))}
       </CardsWrapper>
-      <NewCardWrapper>
+      <NewCardWrapper ref={newCardWrapper} >
         {editing ? (
           <NewCardForm onSubmit={handleSubmit}>
             <NewCardTitle placeholder="Title" ref={newTitle} />
