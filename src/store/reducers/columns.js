@@ -26,8 +26,7 @@ const columns = (state = initialState, action) => {
     }
     case REMOVE_COLUMN: {
       const { id } = action.payload;
-      const newState = { ...state };
-      delete newState[id];
+      const { [id]: _, ...newState } = state;
       return newState;
     }
     case RENAME_COLUMN: {
